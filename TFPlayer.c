@@ -21,15 +21,15 @@ void TF_Send_Command(uint8_t cmd, uint8_t parameter1, uint8_t parameter2)
 	HAL_UART_Transmit(TF_UART, CommandPacket, 10, HAL_MAX_DELAY);
 }
 
-void TF_PlayFromStart(void)
-{
-	TF_Send_Command(0x03,0x00,0x01);
-}
-
 void TF_Init(void)
 {
-	TF_Send_Command(0x3F, 0x00, SOURCE_TF_Card);
-	HAL_Delay(800);
+	TF_Send_Command(INIT_CMD, 0x00, SOURCE_TF_Card);
+	HAL_Delay(1000);
+}
+
+void TF_Play(uint8_t audio_num)
+{
+	TF_Send_Command(0x03, 0x00, audio_num);
 }
 
 void TF_Set_Volume(uint8_t volume)
@@ -39,7 +39,7 @@ void TF_Set_Volume(uint8_t volume)
 
 void TF_Next(void)
 {
-	TF_Send_Command(0x01, 0x00, 0x00);
+	TF_Send_Command(0x01, 0, 0);
 }
 
 void TF_Previous(void)

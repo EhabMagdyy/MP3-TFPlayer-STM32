@@ -21,6 +21,7 @@
 #define FEEDBACK  				0x00
 #define SOURCE_TF_Card  		0x02
 #define END_BYTE   				0xEF
+#define INIT_CMD				0x3F
 
 void TF_Send_Command(uint8_t cmd, uint8_t Parameter1, uint8_t Parameter2);
 void TF_Init(void);
